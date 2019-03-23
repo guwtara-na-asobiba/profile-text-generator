@@ -1,0 +1,54 @@
+$bg-color: #e6ecf0;
+
+.profile-generator {
+  background-color: #e6ecf0;
+  border: solid 1px #aaaaaa;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  font-family: Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  width: 300px;
+}
+
+#quwtaraProfileGeneratorResult {
+  color: #14171a;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  margin: 1em auto;
+  min-height: 150px;
+  width: 260px;
+  word-wrap: break-word;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  height: 44px;
+  justify-content: space-around;
+}
+
+.reload {
+  background-color: #ffffff;
+  border: solid 1px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  width: 93px;
+  text-align: center;
+  text-decoration: none;
+}
+
+#quwtaraProfileGeneratorTweetArea {
+  min-width: 93px;
+}
+
+.twitter-share-button-template {
+  display: none;
+}
+
+.signature {
+  font-size: 12px;
+  padding: 0 25px 16px;
+  text-align: right;
+}

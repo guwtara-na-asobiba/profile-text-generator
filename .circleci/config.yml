@@ -4,6 +4,8 @@ jobs:
     working_directory: ~/work
     docker:
       - image: circleci/node:10.15
+    environment:
+      APP_PROJECT_NAME: profile-text-generator
     steps:
       - checkout
       - restore_cache:
@@ -46,8 +48,6 @@ jobs:
     <<: *exector
     docker:
       - image: google/cloud-sdk:latest
-    environment:
-      APP_PROJECT_NAME: profile-text-generator
     steps:
       - attach_workspace:
           at: .
@@ -59,22 +59,55 @@ jobs:
           name: deploy to storage
           command: |
             gcloud auth activate-service-account --key-file ~/firebase-service-key.json
-            gsutil cp ./dist/$APP_PROJECT_NAME-latest.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/
+            gsutil cp ./dist/$APP_PROJECT_NAME-latest.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-master.min.js
+  release:
+    <<: *exector
+    docker:
+      - image: google/cloud-sdk:latest
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: create gcp credential
+          command: |
+            echo $FIREBASE_SERVICE_KEY | base64 --decode --ignore-garbage > ~/firebase-service-key.json
+      - run:
+          name: deploy to storage
+          command: |
+            gcloud auth activate-service-account --key-file ~/firebase-service-key.json
+            gsutil cp gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-master.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-latest.min.js
 workflows:
   version: 2
   deploy_to_storage:
     jobs:
-      - setup
+      - setup:
+          filters:
+            tags:
+              ignore: /.*/
       - lint:
           requires:
             - setup
+          filters:
+            tags:
+              ignore: /.*/
       - build:
           requires:
             - lint
+          filters:
+            tags:
+              ignore: /.*/
       - deploy:
           requires:
             - build
           filters:
+            tags:
+              ignore: /.*/
             branches:
               only: 
-                - feature/start-develop
+                - master
+      - release:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/

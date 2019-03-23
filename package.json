@@ -1,6 +1,6 @@
 {
   "name": "profile-text-generator",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "twitterのプロフィールテキストをランダムで生成する",
   "main": "index.js",
   "scripts": {

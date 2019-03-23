@@ -76,6 +76,7 @@ jobs:
           command: |
             gcloud auth activate-service-account --key-file ~/firebase-service-key.json
             gsutil cp gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-master.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-latest.min.js
+            gsutil cp gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-master.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-$CIRCLE_TAG.min.js
 workflows:
   version: 2
   deploy_to_storage:

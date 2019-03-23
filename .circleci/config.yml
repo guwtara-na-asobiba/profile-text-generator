@@ -59,7 +59,7 @@ jobs:
           name: deploy to storage
           command: |
             gcloud auth activate-service-account --key-file ~/firebase-service-key.json
-            gsutil cp ./dist/$APP_PROJECT_NAME-latest.min.js gs://$STORAGE_BUCKET_NAME/scripts/$APP_PROJECT_NAME/$APP_PROJECT_NAME-latest.min.js
+            gsutil cp ./dist/$APP_PROJECT_NAME-latest.min.js gs://quwtara-tamago-don.appspot.com/scripts/$APP_PROJECT_NAME/
 workflows:
   version: 2
   deploy_to_storage:

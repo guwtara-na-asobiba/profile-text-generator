@@ -1,7 +1,9 @@
-$bg-color: #e6ecf0;
+:root {
+  --bg-color: #e6ecf0;
+}
 
 .profile-generator {
-  background-color: #e6ecf0;
+  background-color: var(--bg-color);
   border: solid 1px #aaaaaa;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
   font-family: Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;

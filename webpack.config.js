@@ -22,8 +22,6 @@ module.exports = {
         use: [
           {
             loader: 'vue-loader',
-            options: {
-            },
           },
         ],
       },
@@ -31,7 +29,6 @@ module.exports = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader',
           'postcss-loader',
         ],
       },
